@@ -12,9 +12,9 @@ Este proyecto es una aplicación de gestión de pedidos para un sistema de comer
 ## Tecnologias
 
 - Mongo
-- Postgres
-- Angular 17
-- Spring Boot
+- Postgres 15
+- Angular 16
+- Spring Boot 3
 
 ## Docker Compose
 
