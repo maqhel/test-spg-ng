@@ -1,0 +1,55 @@
+<mat-dialog-content  width="400px">
+  <div class="row">
+    <div class="col-xl-12">
+      <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+
+      <div class="d-flex justify-content-between">
+        <h1>Agregar Productos</h1>
+        <div class="d-flex">
+          <button type="submit" mat-flat-button color="primary">Agregar</button>
+          <a mat-stroked-button mat-dialog-close color="accent" class="mx-2"
+            >Cancelar</a
+          >
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- {{product.value}} -->
+
+        <div class="col-xl-8">
+
+            <mat-form-field style="display:flex">
+              <mat-label>Producto</mat-label>
+              <input
+                #input
+                type="text"
+                matInput
+                [formControl]="product"
+                [matAutocomplete]="auxto"
+              />
+              <mat-autocomplete
+                requireSelection
+                #auxto="matAutocomplete"
+                [displayWith]="displayProduct"
+              >
+                <mat-option *ngFor="let option of products" [value]="option">
+                  {{ option.id }} - {{ option.title }} - S/.{{option.price}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+        </div>
+        <div class="col-xl-4">
+          <app-form-group>
+            <app-input
+            min="1"
+              label="Cantidad"
+              type="number"
+              [control]="qty"
+            ></app-input>
+          </app-form-group>
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+</mat-dialog-content>

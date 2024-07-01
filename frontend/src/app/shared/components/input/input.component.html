@@ -1,0 +1,7 @@
+<mat-form-field appearance="outline">
+  <mat-label>{{ label }}</mat-label>
+  <input *ngIf="type != 'textarea'" matInput [type]="type" [formControl]="control" [required]="required">
+  <textarea rows="5" *ngIf="type == 'textarea'" matInput [type]="type" [formControl]="control" [required]="required"></textarea>
+  <mat-icon *ngIf="icon" matPrefix>{{ icon }}</mat-icon>
+  <mat-error *ngIf="control.invalid && (control.dirty || control.touched)">{{required && control.errors?.['required'] ? 'Required' : ''}}</mat-error>
+</mat-form-field>

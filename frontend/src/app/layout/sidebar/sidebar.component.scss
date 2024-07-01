@@ -1,0 +1,39 @@
+.mat-drawer-inner-container {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+mat-sidenav {
+  margin-top: 12px;
+  display: block;
+  box-shadow: 0 50px 50px rgba(0, 0, 0, 0.1);
+  overflow: auto;
+  mat-nav-list {
+    &.mat-mdc-list-base.mat-mdc-list-base.mdc-list {
+      padding: 16px;
+      --mdc-list-list-item-label-text-color: #999;
+      --mdc-list-list-item-container-shape: 4px;
+      a.mdc-list-item {
+        margin-bottom: 6px;
+        &.active {
+          background: #5b5b5b;
+          mat-icon {
+            color: #fff;
+          }
+          .mdc-list-item__content {
+            .mdc-list-item__primary-text {
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.full-height {
+  mat-sidenav {
+    height: calc(100vh - 48px);
+  }
+}

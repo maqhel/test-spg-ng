@@ -1,0 +1,22 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidenav (click)="toggleSidenav()" [opened]="screenWidth > 992"
+               [mode]="(screenWidth > 992) ? 'side' : 'over'">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/orders" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <mat-icon matListItemIcon>space_dashboard</mat-icon>
+        Pedidos
+      </a>
+      <a mat-list-item routerLink="/products" routerLinkActive="active">
+        <mat-icon matListItemIcon>inventory</mat-icon>
+        Productos
+      </a>
+      <!-- <a mat-list-item routerLink="/clients" routerLinkActive="active">
+        <mat-icon matListItemIcon>category</mat-icon>
+        Clientes
+      </a> -->
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+  <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

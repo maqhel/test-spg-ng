@@ -1,0 +1,65 @@
+version: '3.8'
+services:
+  postgres:
+    container_name: postgres_db
+    image: postgres:15.1
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_PORT=5432
+    ports:
+      - "5432:5432"
+    user: postgres
+    restart: always
+    volumes:
+      - pgdatax:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - mireda
+
+  mongodb:
+    container_name: mongodb
+    image: mongo:4.4
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodatax:/data/db
+    healthcheck:
+      test: ["CMD-SHELL", "Waiting for connections"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - mireda
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    networks:
+      - mireda
+ 
+
+  backend:
+    depends_on:
+      postgres:
+        condition: service_healthy
+    build: ./backend
+    ports:
+      - "8080:8080"
+    networks:
+      - mireda
+
+volumes:
+  pgdatax:
+  mongodatax:
+
+networks:
+  mireda:
+    driver: bridge

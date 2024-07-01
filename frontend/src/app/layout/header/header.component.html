@@ -1,0 +1,21 @@
+<mat-toolbar>
+  <button
+    class="header-sidebar-btn"
+    type="button"
+    aria-label="Toggle sidenav"
+    mat-icon-button
+    (click)="toggleSidebar()">
+    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
+  <span>Panel</span>
+  <span class="header-spacer"></span>
+  <button class="header-btn" [matMenuTriggerFor]="menu" aria-label="icon-button with a menu">
+    <ngx-avatars size="35" [name]="user"></ngx-avatars>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>

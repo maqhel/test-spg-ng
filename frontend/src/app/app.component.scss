@@ -1,0 +1,28 @@
+app-header,
+app-sidebar {
+  display: block;
+}
+
+app-header {
+  min-height: 60px;
+}
+
+app-sidebar {
+  mat-sidenav-container.mat-drawer-container {
+    @media (min-width: 992px) {
+      z-index: 200;
+    }
+    mat-sidenav {
+      min-height: calc(100vh - 48px);
+      width: 250px;
+      position: fixed;
+      left: 0;
+      top: 48px;
+      z-index: 200;
+    }
+  }
+}
+
+.page {
+  min-height: calc(100vh - 48px);
+}

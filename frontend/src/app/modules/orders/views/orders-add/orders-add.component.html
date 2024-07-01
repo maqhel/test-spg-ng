@@ -1,0 +1,134 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xl-12">
+      <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+        <div class="d-flex justify-content-between">
+          <h1>Agregar Pedido</h1>
+          <div class="d-flex">
+            <button type="submit" mat-flat-button color="primary">
+              Guardar
+            </button>
+            <a
+              mat-stroked-button
+              routerLink="/orders"
+              color="accent"
+              class="mx-2"
+              >Cancelar</a
+            >
+          </div>
+        </div>
+        <div class="row">
+          <div class="d-flex justify-content-start mb-4">
+            <div class="d-flex" (click)="openAddClientDialog()">
+              <a mat-flat-button color="warn">Nuevo Cliente</a>
+            </div>
+          </div>
+          <div class="col-xl-6">
+              <mat-form-field style="display:flex">
+                <mat-label>Cliente</mat-label>
+                <input
+                  #input
+                  matInput
+                  [formControl]="clientId"
+                  [matAutocomplete]="auto"
+                />
+                <mat-autocomplete
+                  requireSelection
+                  #auto="matAutocomplete"
+                  [displayWith]="displayClient"
+                >
+                  <mat-option
+                    *ngFor="let option of clients "
+                    [value]="option.id"
+                  >
+                    {{ option.id }} - {{ option.full_name }}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+
+              <!--
+                <app-select label="Cliente" [required]="true" [control]="clientId" [options]="clients">
+                </app-select> -->
+          </div>
+
+          <div class="col-12">
+            <div class="d-flex justify-content-between mb-4">
+              <div class="d-flex">
+                <a
+                  mat-flat-button
+                  color="warn"
+                  (click)="openAddProductsDialog()"
+                >
+                  Agregar Producto
+                </a>
+              </div>
+              <div class="" style="align-self: center">
+                <h2>Total: S/. {{total.value}}</h2>
+              </div>
+            </div>
+
+            <!-- displayedColumns: string[] = ['image', 'title', 'qty', 'price', 'actions']; -->
+            <table mat-table [dataSource]="detail">
+              <ng-container matColumnDef="image">
+                <th mat-header-cell width="107" *matHeaderCellDef>Image</th>
+                <td mat-cell *matCellDef="let element">
+                  <div class="thumb-wrapper">
+                    <div class="thumb">
+                      <img
+                        [src]="element.product.image"
+                        loading="lazy"
+                        width="50"
+                        height="50"
+                        [alt]="element.product.title"
+                      />
+                    </div>
+                  </div>
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.product.title }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="qty">
+                <th mat-header-cell *matHeaderCellDef>Cantidad</th>
+                <td mat-cell *matCellDef="let element">{{element.qty}}</td>
+              </ng-container>
+              <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef>Precio</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.price }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="subtotal">
+                <th mat-header-cell *matHeaderCellDef>SubTotal</th>
+                <td mat-cell *matCellDef="let element"> S/.   {{ element.subtotal }}</td>
+              </ng-container>
+              <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Opciones</th>
+                <td mat-cell *matCellDef="let element">
+                  <a
+                    mat-icon-button
+                    [matMenuTriggerFor]="menu"
+                    aria-label="icon-button with a menu"
+                  >
+                    <mat-icon>more_vert</mat-icon>
+                  </a>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="deleteDetail(element)">
+                      <mat-icon>delete</mat-icon>
+                      <span>Eliminar</span>
+                    </button>
+                  </mat-menu>
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

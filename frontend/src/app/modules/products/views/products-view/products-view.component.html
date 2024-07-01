@@ -1,0 +1,43 @@
+  <div class="container-fluid">
+    <app-loading-spinner *ngIf="productLoading"></app-loading-spinner>
+    <div *ngIf="!productLoading">
+      <div class="d-flex justify-content-between">
+        <h1>{{ product.title }}</h1>
+        <div >
+          <a class="mx-2" mat-flat-button color="accent" matTooltip="Edit" [routerLink]="'/products/edit/' + product.id"> Editar
+            <mat-icon>edit</mat-icon>
+          </a>
+          <button mat-flat-button  color="warn" matTooltip="Delete" *ngIf="product.id"  (click)="openDeleteDialog(product.id, 'Estas seguro de eliminar este producto?')" > Eliminar
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div class="details-card">
+        <div class="row">
+          <div class="col-xl-4 details-col">
+            <strong class="details-label">Image</strong>
+            <div class="details-value">
+              <div class="thumb-wrapper">
+                <div class="thumb">
+                  <img [src]="product.image" loading="lazy" width="100" height="100" [alt]="product.title"/>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 details-col">
+            <strong class="details-label">Description</strong>
+            <div class="details-value">
+              <p>{{ product.description }}</p>
+            </div>
+          </div>
+
+          <div class="col-xl-4 details-col">
+            <strong class="details-label">Price</strong>
+            <div class="details-value">
+              <p>${{ product.price }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

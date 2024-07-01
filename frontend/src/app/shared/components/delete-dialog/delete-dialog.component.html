@@ -1,0 +1,10 @@
+<mat-dialog-content>
+  <div class="icon">
+    <mat-icon>delete</mat-icon>
+  </div>
+  {{ data.message }}
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-flat-button color="warn" [mat-dialog-close]="data.id">Eliminar</button>
+  <button mat-stroked-button color="accent" mat-dialog-close>Cancelar</button>
+</mat-dialog-actions>

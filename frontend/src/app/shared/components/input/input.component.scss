@@ -1,0 +1,7 @@
+.mat-mdc-form-field {
+  display: flex;
+  --mat-form-field-subscript-text-size: 12px;
+  .mdc-text-field__input {
+    padding-top: 2px;
+  }
+}

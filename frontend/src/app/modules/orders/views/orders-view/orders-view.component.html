@@ -1,0 +1,86 @@
+<div class="container-fluid">
+  <app-loading-spinner *ngIf="orderLoading"></app-loading-spinner>
+  <div *ngIf="!orderLoading">
+    <div class="d-flex justify-content-between">
+      <h1>PEDIDO:   {{moment(order.date).format('DD/MM/YYYY HH:mm')  }}</h1>
+      <div >
+        <a class="mx-2" mat-flat-button color="accent" matTooltip="Edit" [routerLink]="'/orders/edit/' + order.id"> Editar
+          <mat-icon>edit</mat-icon>
+        </a>
+        <button mat-flat-button  color="warn" matTooltip="Delete" *ngIf="order.id"  (click)="openDeleteDialog(order.id, 'Estas seguro de eliminar esta orden?')" > Eliminar
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="details-card">
+       <div class="row">
+
+        <div class="col-xl-4 details-col">
+          <h3>Cliente:</h3>
+          <div class="details-value">
+           <p>  Nombre: {{ order.client?.full_name || ''}}</p>
+           <p> Apellido: {{ order.client?.last_name || '' }}</p>
+          <p>  Telefono: {{ order.client?.phone || '' }}</p>
+         <p>   Correo: {{ order.client?.email || '' }}</p>
+        </div>
+        </div>
+
+        <div class="col-12">
+          <div class="d-flex justify-content-end mb-4">
+              <h2>Total: S/. {{order.total}}</h2>
+          </div>
+
+          <!-- displayedColumns: string[] = ['image', 'title', 'qty', 'price', 'actions']; -->
+          <table mat-table [dataSource]="order.detail">
+            <ng-container matColumnDef="image">
+              <th mat-header-cell width="107" *matHeaderCellDef>Image</th>
+              <td mat-cell *matCellDef="let element">
+                <div class="thumb-wrapper">
+                  <div class="thumb">
+                    <img
+                      [src]="element.product.image"
+                      loading="lazy"
+                      width="50"
+                      height="50"
+                      [alt]="element.product.title"
+                    />
+                  </div>
+                </div>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="title">
+              <th mat-header-cell *matHeaderCellDef>Nombre</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.product.title }}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="qty">
+              <th mat-header-cell *matHeaderCellDef>Cantidad</th>
+              <td mat-cell *matCellDef="let element">{{element.qty}}</td>
+            </ng-container>
+            <ng-container matColumnDef="price">
+              <th mat-header-cell *matHeaderCellDef>Precio</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.price }}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="subtotal">
+              <th mat-header-cell *matHeaderCellDef>SubTotal</th>
+              <td mat-cell *matCellDef="let element"> S/.   {{ element.subtotal }}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </div>
+<!--
+        <div class="col-xl-4 details-col">
+          <strong class="details-label">Price</strong>
+          <div class="details-value">
+            <p>${{ product.price }}</p>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</div>

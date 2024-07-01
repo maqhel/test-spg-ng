@@ -1,0 +1,41 @@
+<div class="product-container">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-12">
+        <app-loading-spinner *ngIf="productLoading "></app-loading-spinner>
+        <form [formGroup]="editForm" (ngSubmit)="onSubmit()" *ngIf="!productLoading ">
+          <div class="d-flex justify-content-between">
+            <h1>Editar Producto</h1>
+            <div >
+              <button type="submit" mat-flat-button color="primary">Guardar</button>
+              <a mat-stroked-button  class="mx-2" routerLink="/products" color="accent">Cancelar</a>
+            </div>
+          </div>
+            <div class="row">
+              <div class="col-xl-4">
+                <app-form-group>
+                  <app-input label="Nombre" [required]="true" [control]="title"></app-input>
+                </app-form-group>
+              </div>
+
+              <div class="col-xl-4">
+                <app-form-group>
+                  <app-input label="Precio" [required]="true" type="number" [control]="price" icon="attach_money"></app-input>
+                </app-form-group>
+              </div>
+              <div class="col-xl-4">
+                <app-form-group>
+                  <app-input label="Image URL" type="url" [control]="image"></app-input>
+                </app-form-group>
+              </div>
+              <div class="col-xl-4">
+                <app-form-group>
+                  <app-input label="Descripcion" type="textarea" [control]="description"></app-input>
+                </app-form-group>
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

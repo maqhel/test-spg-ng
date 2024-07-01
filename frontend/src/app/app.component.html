@@ -1,0 +1,12 @@
+<!-- *ngIf="isAuthenticated" -->
+ <ng-container >
+  <app-header class="fixed"></app-header>
+  <app-sidebar class="full-height">
+      <main class="page py-3 px-3">
+        <router-outlet></router-outlet>
+      </main>
+  </app-sidebar>
+</ng-container>
+<!-- <ng-container *ngIf="!isAuthenticated">
+  <router-outlet></router-outlet>
+</ng-container> -->

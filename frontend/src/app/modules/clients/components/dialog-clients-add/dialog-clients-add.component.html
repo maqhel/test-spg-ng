@@ -1,0 +1,40 @@
+<mat-dialog-content>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-12">
+        <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+          <div class="d-flex justify-content-between">
+            <h1>Agregar Cliente</h1>
+            <div class="d-flex">
+              <button type="submit" mat-flat-button color="primary">Guardar</button>
+              <a mat-stroked-button mat-dialog-close color="accent" class="mx-2">Cancelar</a>
+            </div>
+          </div>
+            <div class="row">
+              <div class="col-xl-4">
+                <app-form-group>
+                  <app-input label="Nombres" [required]="true" [control]="full_name"></app-input>
+                </app-form-group>
+              </div>
+              <div class="col-xl-4">
+                <app-form-group>
+                  <app-input label="Apellidos"  type="text" [control]="last_name"></app-input>
+                </app-form-group>
+              </div>
+              <div class="col-xl-4">
+                <app-form-group>
+                  <app-input label="Telefono" type="text" [control]="phone"></app-input>
+                </app-form-group>
+              </div>
+              <div class="col-xl-6">
+                <app-form-group>
+                  <app-input label="Correo" type="email" [control]="email"></app-input>
+                </app-form-group>
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+
